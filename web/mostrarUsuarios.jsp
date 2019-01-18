@@ -9,7 +9,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <!DOCTYPE html>
-
 <%
   response.setHeader("Pragma", "no-cache");
   response.addHeader("Cache-control", "must-revalidate");
@@ -28,7 +27,6 @@
     request.getRequestDispatcher("index.jsp").forward(request, response);  
   }
 %>
-
 
 <html>
     <div class="cabecera">

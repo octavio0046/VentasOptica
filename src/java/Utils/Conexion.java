@@ -12,7 +12,8 @@ public class Conexion
     try
     {
       Class.forName("com.mysql.jdbc.Driver");
-        cn = DriverManager.getConnection("jdbc:mysql://localhost/BDACLINICA", "root", "ABc_123.");
+     // cn = DriverManager.getConnection("jdbc:mysql://localhost/BDACLINICA", "root", "ABc_123.");
+        cn = DriverManager.getConnection("jdbc:mysql://localhost/BD_OPTICAS", "root", "OCTAVIO0046");
       System.out.print("Conexion Satisfactoria");
     }
     catch (Exception e)
