@@ -9,18 +9,13 @@
 
 <!DOCTYPE html>
 <%
-     
-   
     String usu = "";
     String nom = "";
     HttpSession sesionOK = request.getSession();
 
     if (sesionOK.getAttribute("perfil") != null) {
         nom = (String) sesionOK.getAttribute("nom") + " " + (String) sesionOK.getAttribute("ape");
-
     }
-
-
 %>
 <html>
     <div class="cabecera">
@@ -62,26 +57,15 @@
         </div>
       </li>
     
-  
-            <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      CLIENTES
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="ServletClientes?accion=BuscarCliente">Buscar Clientes</a>
-          <a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalLong2" >#</a>
-          <div class="dropdown-divider"></div>
-          
-        </div>
-      </li>
+
  
           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      USUARIO CLIENTES
+      VENTAS
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="">#</a>
-          <a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalLong2" >Registrar Cliente</a>
+          <a class="dropdown-item" href="">***</a>
+          <a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalLong2" >REALIZAR VENTA</a>
           <div class="dropdown-divider"></div>
           
         </div>
@@ -211,7 +195,7 @@
         
         
         
-         <!-- Modal para registro de cliente -->
+         <!-- iinicio Modal para buscar_cliente para venta -->
 <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -227,14 +211,13 @@
           
         
              <center>
-          <form class="login" action="ServletUsuarioCliente" method="post" >
-                <input type="hidden" name="accion" value="insertar"/>
+          <form class="login" action="ServletClientes" method="post" >
+                <input type="hidden" name="accion" value="ValidarCliente"/>
            
-                <label>Correo</label>
-                <input type="text" placeholder="Usuario" name="txtCorreo"  >
+                <label>NIT</label>
+                <input type="text"  name="txtNit"  >
                  <br><br>
-                   <label>Contraseña</label>
-                  <input type="password" placeholder="Password" name="txtPass" required="">
+                   
                   <br><br> <input type="submit"  class="btn btn-success"  value="Registrar Cliente" >  
             </form>
              </center>
@@ -248,7 +231,7 @@
     </div>
   </div>
 </div>
-        
+          <!-- FIN Modal para buscar_cliente para venta -->
         
     </body>
 </html>
