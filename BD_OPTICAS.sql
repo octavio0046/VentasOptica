@@ -44,5 +44,16 @@ UPDATE TB_USUARIOS SET ESTADO='INACTIVO' WHERE COD_USUARIO=_COD_USUARIO;
 END&&
 
 
-INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','EMPRESARIAL','OCTAVIO@GMAIL.COM','ABC','2018-09-24 21:55:34','ACTIVO');
 INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','ADMIN','OCTAVIO@GMAIL.COM','ABC.123','2018-09-24 21:55:34','ACTIVO');
+ 
+create table tb_cliente(
+correlativo int auto_increment,
+nit int,
+nombre1 varchar(50),
+nombre2 varchar(50),
+apellido1 varchar(50),
+apellido2 varchar(50),
+primary key (correlativo)
+);
+
+insert into tb_cliente values(default,1,'C/F','','','');
