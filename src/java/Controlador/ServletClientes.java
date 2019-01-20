@@ -39,8 +39,8 @@ public class ServletClientes extends HttpServlet {
     String accion = request.getParameter("accion");
     if  (accion.equals("ValidarCliente")) {
       ValidarCliente(request, response);
-    } else if (accion.equals("EliminarUsuario")) {
-     // eliminarUsuarios(request, response);
+    } else if (accion.equals("CancelarVenta")) {
+     CancelarVenta(request, response);
     } else if (accion.equals("ModificarUsuario")) {
      // actualizarUsuario(request, response);
     } else if (accion.equals("RegistrarUsuario")) {
@@ -51,19 +51,28 @@ public class ServletClientes extends HttpServlet {
     
     }
   }
-  
-  
-  
-  private void ValidarCliente(HttpServletRequest request, HttpServletResponse response)
+   
+    private void CancelarVenta(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
   {
-    int nit = Integer.parseInt(request.getParameter("txtNit"));
-    
-    
+      HttpSession sesionOK2 = request.getSession();     
+      sesionOK2.removeAttribute("correlativo");
+      sesionOK2.removeAttribute("nit");
+      sesionOK2.removeAttribute("nombre");
+      sesionOK2.removeAttribute("apellido");
+      sesionOK2.invalidate();
+      request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+  
+   
+   
+   private void ValidarCliente(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException
+  {
+    int nit = Integer.parseInt(request.getParameter("txtNit"));  
     try
       {
-        CallableStatement cl = Conexion.getConexion().prepareCall("select * from tb_cliente where nit=?");
-        
+        CallableStatement cl = Conexion.getConexion().prepareCall("select * from tb_cliente where nit=? and estado=1");
         cl.setInt(1, nit);
         ResultSet rs = cl.executeQuery();
         if (rs.next())
@@ -71,14 +80,14 @@ public class ServletClientes extends HttpServlet {
           HttpSession sesionOK2 = request.getSession();
           sesionOK2.setAttribute("correlativo", rs.getInt(1));
           sesionOK2.setAttribute("nit", rs.getInt(2));
-          sesionOK2.setAttribute("nombre1", rs.getString(3));
-          sesionOK2.setAttribute("apellido1", rs.getString(5));
+          sesionOK2.setAttribute("nombre", rs.getString(3));
+          sesionOK2.setAttribute("apellido", rs.getString(4));
           request.getRequestDispatcher("formPreVenta.jsp").forward(request, response);
         }
         else
         {
-          request.setAttribute("msg", "Error de Usu o pas");
-          request.getRequestDispatcher("login.jsp").forward(request, response);
+          request.setAttribute("msg", "no existe la persona");
+          request.getRequestDispatcher("template1.jsp").forward(request, response);
         }
       } catch (Exception e)
       {

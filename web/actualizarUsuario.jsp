@@ -11,24 +11,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <!DOCTYPE html>
-<%
-  response.setHeader("Pragma", "no-cache");
-  response.addHeader("Cache-control", "must-revalidate");
-  response.addHeader("Cache-control", "no-cache");
-  response.addHeader("Cache-control", "no-store");
-  response.setDateHeader("Expires", 0);
-  try {
-           if(session.getAttribute("nom")==null){
-      
 
-      request.getRequestDispatcher("index.jsp").forward(request, response);
-      
-  }
-  }catch(Exception e){
-      
-    request.getRequestDispatcher("index.jsp").forward(request, response);  
-  }
-%>
 
 <html>
     <div class="cabecera">
