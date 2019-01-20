@@ -230,15 +230,7 @@
         <!-- FIN Modal para buscar_cliente para venta -->
 
 
-        <h5 align="center">
-            <%
-                if (request.getAttribute("msg") != null) {
-                    out.println(request.getAttribute("msg"));
-                    
-                }
-            %>
-            <a class="dropdown-item" href="formRegistrarCliente.jsp">RegistrarCliente</a>
-        </h5>     
+      
 
     </div>
 </html>

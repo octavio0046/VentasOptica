@@ -8,11 +8,13 @@
     int nit = 0;
     String nom1 = "";
     String ape1 = "";
+    String dire="";
     HttpSession sesionOK2 = request.getSession();
     correlativo = (Integer) sesionOK2.getAttribute("correlativo");
     nit = (Integer) sesionOK2.getAttribute("nit");
     nom1 = (String) sesionOK2.getAttribute("nombre");
     ape1 = (String) sesionOK2.getAttribute("apellido");
+    dire = (String) sesionOK2.getAttribute("direccion");
 
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,6 +31,7 @@
                 <li class="breadcrumb-item" ><a href="#">Nit:<%out.println(nit);%></a></li>
                 <li class="breadcrumb-item"><a href="#">Nombre:<%out.println(nom1);%></a></li>
                  <li class="breadcrumb-item"><a href="#"><%out.println(ape1);%></a></li>
+                 <li class="breadcrumb-item"><a href="#"><%out.println(dire);%></a></li>
                  <li class="breadcrumb-item"><a href="ServletClientes?accion=CancelarVenta">Cancelar Venta</a></li>
             </ol>
         </nav>

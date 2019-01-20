@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Modelo.Cliente;
+import Modelo.ClienteBD;
 import Utils.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,8 +43,8 @@ public class ServletClientes extends HttpServlet {
       ValidarCliente(request, response);
     } else if (accion.equals("CancelarVenta")) {
      CancelarVenta(request, response);
-    } else if (accion.equals("ModificarUsuario")) {
-     // actualizarUsuario(request, response);
+    } else if (accion.equals("RegistrarCliente")) {
+     RegistrarCliente(request, response);
     } else if (accion.equals("RegistrarUsuario")) {
       //registrarUsuario(request, response);
     
@@ -82,12 +84,13 @@ public class ServletClientes extends HttpServlet {
           sesionOK2.setAttribute("nit", rs.getInt(2));
           sesionOK2.setAttribute("nombre", rs.getString(3));
           sesionOK2.setAttribute("apellido", rs.getString(4));
+          sesionOK2.setAttribute("direccion", rs.getString(5));
           request.getRequestDispatcher("formPreVenta.jsp").forward(request, response);
         }
         else
         {
           request.setAttribute("msg", "no existe la persona");
-          request.getRequestDispatcher("template1.jsp").forward(request, response);
+          request.getRequestDispatcher("formRegistrarCliente.jsp?nit="+nit+"").forward(request, response);
         }
       } catch (Exception e)
       {
@@ -96,7 +99,24 @@ public class ServletClientes extends HttpServlet {
     
   }
   
+private void RegistrarCliente(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException
+  {
+    int  nit = Integer.parseInt(request.getParameter("txtNit"));
+    String nom = request.getParameter("txtNombre");
+    String nom2 = request.getParameter("txtNombre2");
+    String direccion = request.getParameter("txtDireccion");
 
+    Cliente c = new Cliente(nit, nom, nom2, direccion);
+    
+    boolean rpta = ClienteBD.insertarCliente(c);
+    if (rpta) {
+      response.sendRedirect("index.jsp");
+    } else {
+      response.sendRedirect("mensaje2.jsp?men=No se regisro  correctamente");
+    }
+  }
+  
 
   /*
   private void eliminarUsuarios(HttpServletRequest request, HttpServletResponse response)
@@ -150,26 +170,6 @@ public class ServletClientes extends HttpServlet {
   }
   
   
-  private void registrarUsuario(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException
-  {
-    String ape = request.getParameter("txtApellido");
-    String nom = request.getParameter("txtNombre");
-    String pais = request.getParameter("txtPais");
-    String perfil = request.getParameter("txtPerfil");
-    String correo = request.getParameter("txtCorreo");
-    String clave = request.getParameter("txtClave");
-    String estado = request.getParameter("txtEstado");
-    
-    Usuarios p = new Usuarios(ape, nom, pais, perfil, correo, clave, estado);
-    
-    boolean rpta = UsuariosBD.insertarUsuarios(p);
-    if (rpta) {
-      response.sendRedirect("mensaje2.jsp?men=se Registro  correctamente");
-    } else {
-      response.sendRedirect("mensaje2.jsp?men=No se regisro  correctamente");
-    }
-  }
   
   
     private void registrarCliente(HttpServletRequest request, HttpServletResponse response)
