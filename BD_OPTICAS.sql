@@ -49,11 +49,32 @@ INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','ADMIN','OC
 create table tb_cliente(
 correlativo int auto_increment,
 nit int,
-nombre1 varchar(50),
+nombre varchar(50),
 nombre2 varchar(50),
-apellido1 varchar(50),
-apellido2 varchar(50),
+direccion varchar(50),
+estado int,
 primary key (correlativo)
 );
+drop table tb_cliente;
 
-insert into tb_cliente values(default,1,'C/F','','','');
+DELIMITER &&
+CREATE PROCEDURE insertar_cliente (nit int, nombre varchar(50),nombre2 varchar(50),direccion varchar(50))
+BEGIN
+insert INTO tb_cliente values(default,nit,nombre,nombre2,direccion,1);
+END&&
+  
+  
+create table tb_producto  (
+correlativo int auto_increment,
+codigo varchar(100),
+nombre varchar(50),
+descripcion varchar(50),
+existencia int,
+precio_venta float(8,2),
+precio_compra float(8,2),
+primary key(correlativo)
+);  
+  
+  select * from tb_producto;
+  
+  insert into tb_producto values (default,'ABC-125','LIQUIDO LIMPIADOR','NINGUNA',50,15,10);

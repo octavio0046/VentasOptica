@@ -209,28 +209,19 @@
                         <center>
                             <form class="login" action="ServletClientes" method="post" >
                                 <input type="hidden" name="accion" value="ValidarCliente"/>
-
                                 <label>NIT</label>
                                 <input type="text"  name="txtNit"  >
                                 <br><br>
-
-                                <br><br> <input type="submit"  class="btn btn-success"  value="Registrar Cliente" data-toggle="modal" data-target="#exampleModalLong2" >  
+                                <input type="submit"  class="btn btn-success"  value="VALIDAR" data-toggle="modal" data-target="#exampleModalLong2" >  
                             </form>
                         </center>
-
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-
                     </div>
                 </div>
             </div>
         </div>
         <!-- FIN Modal para buscar_cliente para venta -->
-
-
-      
-
     </div>
 </html>
